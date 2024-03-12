@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 
 from rest_api_application  import db
+from rest_api_application.models.events import Events
 
 
 class User(db.Model, UserMixin):

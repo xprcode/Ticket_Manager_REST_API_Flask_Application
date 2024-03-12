@@ -18,3 +18,5 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = getenv('SQLALCHEMY_TRACK_MODIFICA
 db = SQLAlchemy(app)
 Migrate(app,db)
 
+from rest_api_application.login.views import login_blueprint
+app.register_blueprint(login_blueprint)
