@@ -25,3 +25,4 @@ Migrate(app,db)
 
 from rest_api_application.login.views import login_blueprint
 app.register_blueprint(login_blueprint)
+
