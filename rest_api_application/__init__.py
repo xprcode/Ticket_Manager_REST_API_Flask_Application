@@ -4,10 +4,15 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
+from flask_restful import Api
 
 load_dotenv()
 
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = getenv('JWT_SECRET_KEY')
+api = Api(app)
+jwt = JWTManager(app)
 
 
 app.config['SECRET_KEY'] = getenv('SECRET_KEY')
