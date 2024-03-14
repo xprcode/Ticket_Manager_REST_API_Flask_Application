@@ -10,7 +10,7 @@ from rest_api_application.resources.event import Event
 from rest_api_application.resources.user_event import UserEvent
 
 api.add_resource(Event, '/event/<int:user_id>/<int:event_id>')
-api.add_resource(UserEvent, '/user_event/<int:user_id>')
+api.add_resource(UserEvent, '/user_event/<int:user_id>', '/user_event/<int:user_id>/<int:event_id>')
 
 @app.route('/')
 def index():
