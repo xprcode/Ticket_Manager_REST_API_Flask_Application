@@ -8,9 +8,6 @@ from rest_api_application.models.user import User
 
 
 class Event(Resource):
-    @jwt_required()
-    def get(self, user, event):
-        return {'name':None},404
     
     @jwt_required()
     def post(self, user_id, event_id):
