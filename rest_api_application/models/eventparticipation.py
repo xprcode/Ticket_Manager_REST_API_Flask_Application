@@ -1,6 +1,5 @@
 from rest_api_application  import db
 
-
 class EventParticipation(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)

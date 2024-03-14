@@ -1,8 +1,8 @@
-"""dbinit
+"""initializing db:
 
-Revision ID: 7b961a72a928
+Revision ID: 6c87a6773c8c
 Revises: 
-Create Date: 2024-03-13 12:40:40.979088
+Create Date: 2024-03-14 10:25:23.248718
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7b961a72a928'
+revision = '6c87a6773c8c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,7 +28,7 @@ def upgrade():
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
-    sa.Column('password', sa.String(length=50), nullable=True),
+    sa.Column('password', sa.String(length=100), nullable=True),
     sa.Column('email', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
@@ -36,8 +36,8 @@ def upgrade():
     op.create_table('event_participation',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('event_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['event_id'], ['events.id'], ),
+    sa.Column('events_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['events_id'], ['events.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

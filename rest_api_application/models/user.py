@@ -1,8 +1,6 @@
 from flask_login import UserMixin
-
 from rest_api_application  import db
 from rest_api_application.models.eventparticipation import EventParticipation
-
 
 class User(db.Model, UserMixin):
     
