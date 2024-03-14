@@ -1,5 +1,5 @@
 from rest_api_application  import db
-
+from rest_api_application.models.eventparticipation import EventParticipation
 
 class Events(db.Model):
     
@@ -7,6 +7,6 @@ class Events(db.Model):
     event_name = db.Column(db.String(50))
     event_adress = db.Column(db.String(50))
     event_date = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
+    event_events = db.relationship('EventParticipation', backref='events', lazy='dynamic')
 
    

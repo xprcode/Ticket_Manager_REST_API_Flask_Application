@@ -1,10 +1,7 @@
-from flask import Blueprint,  session
+from flask import Blueprint, session, jsonify, request
 from flask_login import login_user, LoginManager
-from werkzeug.security import check_password_hash
-from flask import jsonify
-from flask import request
 from flask_jwt_extended import create_access_token
-
+from werkzeug.security import check_password_hash
 from rest_api_application.models.user import User
 from rest_api_application import app
 
@@ -18,7 +15,8 @@ def login():
 
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-  
+    if not username or not password:
+        return jsonify({"msg": "Username and password are required"}), 400
     user = User.query.filter(User.name == username).first()
     
     if user is not None and check_password_hash(user.password, password):
@@ -26,5 +24,5 @@ def login():
         login_user(user)
         access_token = create_access_token(identity=username)
         return jsonify(access_token=access_token)
-    return jsonify({"msg": "Bad username or password"}), 401
+    return jsonify({"msg": "Bad username aaor password"}), 401
 
