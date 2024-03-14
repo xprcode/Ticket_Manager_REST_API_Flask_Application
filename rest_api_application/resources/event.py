@@ -8,7 +8,7 @@ from rest_api_application.models.user import User
 
 
 class Event(Resource):
-    
+   
     @jwt_required()
     def post(self, user_id, event_id):
 
@@ -16,12 +16,12 @@ class Event(Resource):
         event_id = request.json.get('event_id')
         if not user_id or not event_id:
             return {'error': 'User or event not found'}, 400
-        
+     
         user = User.query.filter(User.id == user_id).first()
         event = Events.query.filter(Events.id == event_id).first()
         if not user or not event:
             return {'error': 'User or event not found'}, 404
-        
+     
         new_event_participation = EventParticipation(
             user_id=user_id,
             events_id=event_id

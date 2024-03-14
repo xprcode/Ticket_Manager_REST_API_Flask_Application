@@ -18,11 +18,10 @@ def login():
     if not username or not password:
         return jsonify({"msg": "Username and password are required"}), 400
     user = User.query.filter(User.name == username).first()
-    
+
     if user is not None and check_password_hash(user.password, password):
         session['user_id'] = user.id
         login_user(user)
         access_token = create_access_token(identity=username)
         return jsonify(access_token=access_token)
     return jsonify({"msg": "Bad username aaor password"}), 401
-
