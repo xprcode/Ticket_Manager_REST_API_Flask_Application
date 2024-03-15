@@ -4,8 +4,8 @@ from os import getenv
 from string import Template
 from dotenv import load_dotenv
 
-from user_and_event import get_user_and_event
-from emails import Credentials, EmailSender
+from rest_api_application.email_manager.user_and_event import get_user_and_event
+from rest_api_application.email_manager.emails import Credentials, EmailSender
 
 load_dotenv()
 
@@ -19,27 +19,29 @@ sender = getenv('SENDER')
 
 credentials = Credentials(username, password)
 
-def send_remainder_to_borrowers():
+def send_remainder_to_borrowers(user_event, connection):
     
-        template = Template('''
+        template = Template('''Test
         ''')
         text = template.substitute({
-            'name': borower.name,
-            'title': borower.title,
-            'return_at': borower.return_at
+            'name': user_event.name,
+            'email': user_event.email,
+            'event_name': user_event.event_name,
+            'event adress': user_event.event_adress,
+            'event_data': user_event.event_data
         })
 
         message = email.message_from_string(text)
         message.set_charset('utf-8')
         message['From'] = sender
-        message['To'] = borower.email
-        message['Subject'] = ''
-        connection.sendmail(sender, borower.email, message.as_string())
+        message['To'] = user_event.email
+        message['Subject'] = 'Test'
+        connection.sendmail(sender, user_event.email, message.as_string())
 
 
 def send_by_EmailSender(user_id, event_id):
     
-    event_confirmation  =  get_user_and_event(connection, datetime.today().strftime('%Y-%m-%d'))
+    event_confirmation  =  get_user_and_event(user_id, event_id)
 
     with EmailSender(port, smtp_server, credentials) as connection:
         send_remainder_to_borrowers(event_confirmation, connection)
