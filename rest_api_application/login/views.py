@@ -1,3 +1,9 @@
+"""
+Login Views
+
+This module provides views for user authentication, including login functionality.
+
+"""
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_user, LoginManager
 from flask_jwt_extended import create_access_token
@@ -12,6 +18,12 @@ login_manager.login_view = 'login.login'
 
 @login_blueprint.route('/login', methods = ['POST'])
 def login():
+    """
+    Log in user and generate access token.
+
+    Returns:
+        JSON: Access token if login is successful, error message otherwise.
+    """
 
     username = request.json.get("username", None)
     password = request.json.get("password", None)

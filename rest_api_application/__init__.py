@@ -1,3 +1,21 @@
+"""
+Flask Application Configuration and Initialization
+
+This module initializes the Flask application and sets up essential configurations such as
+database connection, JWT authentication, and API routing.
+It loads environment variables from a .env file using the python-dotenv library.
+The SQLAlchemy extension is used for database management and migration.
+JWTManager is configured for handling JSON Web Tokens for authentication.
+Additionally, a Blueprint for login views is registered with the Flask application.
+
+Attributes:
+    app: The Flask application instance.
+    api: The Flask-RESTful API instance.
+    jwt: The JWTManager instance for JSON Web Token handling.
+    db: The SQLAlchemy database instance.
+    login_blueprint: The Blueprint for login views.
+"""
+
 import os
 from os import getenv
 from dotenv import load_dotenv
@@ -25,4 +43,3 @@ Migrate(app,db)
 
 from rest_api_application.login.views import login_blueprint
 app.register_blueprint(login_blueprint)
-

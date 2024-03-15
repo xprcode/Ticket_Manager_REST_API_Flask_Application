@@ -1,15 +1,34 @@
+"""
+UserEvent Resource
+
+This module defines the UserEvent resource for retrieving user events.
+
+"""
 from flask import jsonify
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
-from rest_api_application import db
 from rest_api_application.models.events import Events
 from rest_api_application.models.eventparticipation import EventParticipation
 from rest_api_application.models.user import User
 
 class UserEvent(Resource):
+    """
+    UserEvent Resource Class
 
+    Provides endpoints for retrieving user events.
+    """
     @jwt_required()
     def get(self, user_id, event_id=None):
+        """
+        Retrieve user events.
+
+        Args:
+            user_id (int): The ID of the user.
+            event_id (int, optional): The ID of the specific event (default is None).
+
+        Returns:
+            dict: A dictionary containing user events or a specific event if event_id is provided.
+        """
         if not user_id:
             return {'error': 'User not found'}, 400
 
