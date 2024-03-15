@@ -5,7 +5,7 @@ from rest_api_application import db
 from rest_api_application.models.events import Events
 from rest_api_application.models.eventparticipation import EventParticipation
 from rest_api_application.models.user import User
-
+from rest_api_application.email_manager.main import send_by_EmailSender
 
 class Event(Resource):
 
@@ -29,4 +29,5 @@ class Event(Resource):
 
         db.session.add(new_event_participation)
         db.session.commit()
+        send_by_EmailSender(user.id, event.id)
         return {'message': 'Participation recorded successfully'}, 201
