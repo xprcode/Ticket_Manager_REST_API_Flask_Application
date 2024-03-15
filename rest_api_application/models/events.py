@@ -7,3 +7,6 @@ class Events(db.Model):
     event_adress = db.Column(db.String(50))
     event_date = db.Column(db.DateTime)
     event_events = db.relationship('EventParticipation', backref='events', lazy='dynamic')
+
+
+
