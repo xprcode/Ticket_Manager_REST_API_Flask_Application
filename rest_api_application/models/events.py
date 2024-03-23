@@ -4,7 +4,7 @@ Events Model
 This module defines the Events model for the application.
 
 """
-from rest_api_application  import db
+from rest_api_application import db
 
 class Events(db.Model):
     """
