@@ -18,7 +18,7 @@ The application provides RESTful APIs for managing events and user-event relatio
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/xprcode/Ticket_Manager_REST_API_Flask_Application
    ```
 2. Create and activate a virtual environment::
             virtualenv env -p python3
