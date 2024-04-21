@@ -10,7 +10,7 @@ Attributes:
     api: The Flask-RESTful API instance.
 
 Routes:
-    - /event/<int:user_id>/<int:event_id>: Endpoint for managing events.
+    - /events/<int:user_id>/<int:event_id>: Endpoint for managing events.
     - /user_event/<int:user_id>: Endpoint for retrieving user events 
     and adding events to a user's list.
     - /user_event/<int:user_id>/<int:event_id>: Endpoint for retrieving 
@@ -22,8 +22,10 @@ from rest_api_application import app, api
 from rest_api_application.resources.event import Event
 from rest_api_application.resources.user_event import UserEvent
 
-api.add_resource(Event, '/event/<int:user_id>/<int:event_id>')
-api.add_resource(UserEvent, '/user_event/<int:user_id>', '/user_event/<int:user_id>/<int:event_id>')
+# Adding event to user portfolio - POST method.
+api.add_resource(Event, '/events/<int:user_id>/<int:event_id>')
+# Getting all events or particular event from the user portfolio - GET method
+api.add_resource(UserEvent, '/user-events/<int:user_id>', '/user-events/<int:user_id>/<int:event_id>')
 
 
 if __name__ == "__main__":

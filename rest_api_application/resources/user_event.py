@@ -39,7 +39,7 @@ class UserEvent(Resource):
         if not event_id:
             participations = EventParticipation.query.filter_by(user_id=user_id).all()
             if not participations:
-                return {'error': 'User has not eny events added.'}, 400
+                return {'error': 'User has not any events added.'}, 400
             event_ids = [participation.events_id for participation in participations]
 
             events = Events.query.filter(Events.id.in_(event_ids)).all()
